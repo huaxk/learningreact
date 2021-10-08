@@ -1,10 +1,21 @@
 import Star from "../components/Star"
 
-const StarRating = ({totalStars = 5, selectedStars = 0}) => {
-  const stars = [...(new Array(totalStars))].map((n, i) => 
+interface props {
+  totalStars?: number
+  selectedStars?: number
+  onRate?: (n: number) => void
+}
+
+export default function StarRating({
+  totalStars = 5,
+  selectedStars = 0,
+  onRate = n => { }
+}: props) {
+  const stars = [...(new Array(totalStars))].map((n, i) =>
     <Star
       key={i}
       selected={selectedStars > i}
+      onSelect={() => onRate(i + 1)}
     />
   )
 
@@ -17,5 +28,3 @@ const StarRating = ({totalStars = 5, selectedStars = 0}) => {
     </>
   )
 }
-
-export default StarRating

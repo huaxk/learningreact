@@ -1,13 +1,32 @@
 import React from 'react'
+import { FaTrash } from 'react-icons/fa'
 import { ColorDataType } from './colordata'
 import StarRating from './StarRating'
 
-const Color = ({ title, color, rating }: ColorDataType) => (
-  <section>
-    <h1>{title}</h1>
-    <div style={{ height: 50, background: color }} />
-    <StarRating selectedStars={rating} />
-  </section>
-)
+interface props extends ColorDataType {
+  onRemove(id: string): void
+  onRate(id: string, rating: number): void
+}
 
-export default Color
+export default function Color({
+  id,
+  title,
+  color,
+  rating,
+  onRemove = id => {},
+  onRate = (id, rating) => {}
+}: props) {
+  return (
+    <section>
+      <h1>{title}</h1>
+      <button onClick={() => onRemove(id)}>
+        <FaTrash />
+      </button>
+      <div style={{ height: 50, background: color }} />
+      <StarRating
+        selectedStars={rating}
+        onRate={rating => onRate(id, rating)}
+      />
+    </section>
+  )
+} 

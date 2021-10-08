@@ -2,9 +2,21 @@ import { useState } from 'react'
 import colorData from './colordata'
 import ColorList from './ColorList'
 
-const ColorOrganizer = () => {
-  const [colors] = useState(colorData)
-  return <ColorList colors={colors} />
-}
-
-export default ColorOrganizer
+export default function ColorOrganizer() {
+  const [colors, setColors] = useState(colorData)
+  return (
+    <ColorList
+      colors={colors}
+      onRemoveColor={id => {
+        const newColors = colors.filter(color => color.id !== id)
+        setColors(newColors)
+      }}
+      onRateColor={(id, rating) => {
+        const newColors = colors.map(color =>
+          color.id === id ? { ...color, rating } : color
+        )
+        setColors(newColors)
+      }}
+    />
+  )
+} 
