@@ -1,22 +1,13 @@
-import { useState } from 'react'
-import colorData from './colordata'
+import { createContext, useState } from 'react'
+import AddColorForm from './AddColorForm'
 import ColorList from './ColorList'
+import ColorProvider from './ColorProvider';
 
 export default function ColorOrganizer() {
-  const [colors, setColors] = useState(colorData)
   return (
-    <ColorList
-      colors={colors}
-      onRemoveColor={id => {
-        const newColors = colors.filter(color => color.id !== id)
-        setColors(newColors)
-      }}
-      onRateColor={(id, rating) => {
-        const newColors = colors.map(color =>
-          color.id === id ? { ...color, rating } : color
-        )
-        setColors(newColors)
-      }}
-    />
+    <ColorProvider>
+      <AddColorForm />
+      <ColorList />    
+    </ColorProvider>
   )
 } 
