@@ -7,16 +7,16 @@ import {MantineProvider} from '@mantine/core'
 
 ReactDOM.render(
   <React.StrictMode>
-    <MantineProvider
+    {/* <MantineProvider
       theme={{
         primaryColor: 'cyan',
         // colorScheme: 'dark',
         // fontFamily: 'Open Sans, sans serif',
         // spacing: { xs: 15, sm: 20, md: 25, lg: 30, xl: 40 },        
       }}>
-      {/* <App /> */}
       <ColorOrganizer />
-    </MantineProvider>
+    </MantineProvider> */}
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 )
