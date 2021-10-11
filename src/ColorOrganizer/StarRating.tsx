@@ -11,7 +11,7 @@ export default function StarRating({
   selectedStars = 0,
   onRate = n => { }
 }: props) {
-  const stars = [...(new Array(totalStars))].map((n, i) =>
+  const stars = [...Array(totalStars)].map((n, i) =>
     <Star
       key={i}
       selected={selectedStars > i}
